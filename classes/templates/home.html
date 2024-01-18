@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+    <!-- Definirea tipului de document și declararea spațiilor de nume pentru XHTML, Thymeleaf și Spring Security -->
+
+<head th:replace="fragments/header :: header-css">
+    <!-- Include fragmentul de antet și CSS folosind Thymeleaf -->
+</head>
+
+<body>
+
+    <div th:replace="fragments/header :: header"></div>
+    <!-- Include fragmentul de antet folosind Thymeleaf -->
+
+    <div class="container">
+        <div class="row">
+            <nav class="side-menu">
+                <h3>Category</h3>
+                <!-- Titlul secțiunii de categorii -->
+                <ul>
+                    <li th:each="cat: ${categories}">
+                        <!-- Parcurge lista de categorii -->
+                        <a th:href="@{/searchByCategory(categoryId=${cat.id})}" th:text="${cat.categoryName}"></a>
+                        <!-- Creează un link pentru fiecare categorie -->
+                    </li>
+                </ul>
+            </nav>
+
+        <button sec:authorize="hasRole('ROLE_ADMIN')" class="btn">
+            <!-- Buton vizibil doar pentru utilizatorii cu rolul de admin -->
+            <a th:href="@{product/new}"><i class="fas fa-plus fa-2x"></i></a>
+            <!-- Link pentru adăugarea unui nou produs -->
+        </button>
+        <div class="col card-deck ml-5 my-3" th:if="${!products.isEmpty()}">
+            <!-- Verifică dacă lista de produse nu este goală -->
+            <div class="card" th:each="product, stat : ${products}" th:if="${stat.count <= 4}">
+                <!-- Parcurge fiecare produs din lista de produse -->
+                <div sec:authorize="hasRole('ROLE_ADMIN')" class="admin">
+                    <!-- Secțiune vizibilă doar pentru admini -->
+                    <button class="btn">
+                        <a th:href="@{'product/delete/' + ${product.getId()}}"><i class="fas fa-times"></i></a>
+                        <!-- Link pentru ștergerea unui produs -->
+                    </button>
+                    <button class="btn">
+                        <a th:href="@{'product/edit/' + ${product.getId()}}"><i class="fas fa-wrench"></i></a>
+                        <!-- Link pentru editarea unui produs -->
+                    </button>
+                </div>
+                <!-- <img class="card-img-top" th:if="${!product.getImage_url().isEmpty()}" th:src="${product.getImage_url()}" alt="Card image cap"> -->
+                <!-- Afișează imaginea produsului dacă există -->
+                <div class="card-body">
+                    <h1 class="card-title" th:text="Tableta"></h1>
+                   
+                
+                    <!-- Afișează numele produsului -->
+                    <p class="card-text" th:text="${product.getDescription()}"></p>
+                    <!-- Afișează descrierea produsului -->
+                </div>
+                <div class="card-footer">
+                    <p th:text="${product.getPrice()}"></p>
+                    <!-- Afișează prețul produsului -->
+                    <a th:href="${'/cart/add/' + product.getId()}" class="btn btn-lg btn-outline-info btn-block" th:text="#{product.add}" ></a>
+                    <!-- Link pentru adăugarea produsului în coșul de cumpărături -->
+                </div>
+            </div>
+    </div>
+        <div>
+         <span th:text="#{product.count} + ' ' + ${productsCount}"></span>
+         <!-- Afișează numărul total de produse -->
+        </div>
+        </div>
+    </div>
+
+    <div th:replace="fragments/footer :: footer"></div>
+    <!-- Include fragmentul de subsol folosind Thymeleaf -->
+
+</body>
+
+</html>

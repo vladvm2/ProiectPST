@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+    <!-- Declară tipul documentului ca HTML și definește spațiul de nume Thymeleaf -->
+
+<head th:replace="fragments/header :: header-css">
+    <!-- Include fragmentul de antet și CSS folosind Thymeleaf -->
+</head>
+
+<body>
+
+    <div th:replace="fragments/header :: header"></div>
+    <!-- Include fragmentul de antet folosind Thymeleaf -->
+
+    <div class="container">
+        <!-- Container pentru conținutul principal al paginii -->
+        <h2 th:text="#{user.title}"></h2>
+        <!-- Afișează titlul paginii, titlul este adus dintr-un fișier de proprietăți internaționalizat -->
+        <br>
+
+        <!-- Afișarea detaliilor utilizatorului -->
+        <h3 th:text="#{user.firstname} + ': ' + ${user.getFirstName()}"></h3>
+        <!-- Afișează prenumele utilizatorului, cu eticheta tradusă din fișierul de proprietăți -->
+        <h3 th:text="#{user.lastname} + ': ' + ${user.getLastName()}"></h3>
+        <!-- Afișează numele de familie al utilizatorului, cu eticheta tradusă din fișierul de proprietăți -->
+        <h3 th:text="#{user.age} + ': ' + ${user.getAge()}"></h3>
+        <!-- Afișează vârsta utilizatorului, cu eticheta tradusă din fișierul de proprietăți -->
+        <h3 th:text="#{user.city} + ': ' + ${user.getCity()}"></h3>
+        <!-- Afișează orașul utilizatorului, cu eticheta tradusă din fișierul de proprietăți -->
+        <h3 th:text="#{user.gender} + ': ' + ${user.getGender()}"></h3>
+        <!-- Afișează genul utilizatorului, cu eticheta tradusă din fișierul de proprietăți -->
+    </div>
+
+  
+
+</body>
+
+</html>

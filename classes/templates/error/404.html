@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <!-- Declară tipul de document ca HTML și definește spațiile de nume pentru XHTML și Thymeleaf -->
+
+<head th:replace="fragments/header :: header-css">
+    <!-- Include fragmentul de antet și CSS utilizând Thymeleaf -->
+</head>
+
+<body>
+
+    <div th:replace="fragments/header :: header"></div>
+    <!-- Include fragmentul de antet al site-ului utilizând Thymeleaf. Aceasta poate include elemente precum bara de navigație sau logo-ul site-ului -->
+
+    <div class="container">
+        <!-- Container principal pentru conținutul paginii -->
+        <div class="starter-template">
+            <!-- Clasa 'starter-template' poate fi folosită pentru stilizare specifică în CSS -->
+            <h1 th:text="#{error.title} + ' 404'"></h1>
+            <!-- Afișează un titlu pentru pagina de eroare, combinând un mesaj internaționalizat (tradus) din 'error.title' cu textul '404' -->
+            <h3 th:text="#{error.no_page}"></h3>
+            <!-- Afișează un mesaj suplimentar de eroare, adus dintr-un fișier de proprietăți pentru internaționalizare -->
+            <a href="/home" th:text="#{home.back}"></a>
+            <!-- Oferă un link pentru a reveni la pagina de acasă, cu textul linkului tradus din 'home.back' -->
+        </div>
+    </div>
+
+    
+</body>
+
+</html>
