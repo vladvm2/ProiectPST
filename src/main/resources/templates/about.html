@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+    <!-- Specifică tipul documentului ca HTML și include spațiul de nume pentru Thymeleaf, care permite folosirea atributelor și funcționalităților Thymeleaf -->
+
+<head th:replace="fragments/header :: header-css">
+    <!-- Include fragmentul de antet pentru stiluri CSS definit într-un alt fișier Thymeleaf, asigurând consistența antetului pe întregul site -->
+</head>
+
+<body>
+
+    <div th:replace="fragments/header :: header"></div>
+    <!-- Include fragmentul de antet al site-ului utilizând Thymeleaf, oferind o bara de navigație consistentă sau alte elemente de antet pentru întreaga aplicație -->
+
+    <div class="container">
+        <!-- Container Bootstrap pentru conținutul principal al paginii -->
+        <div class="starter-template">
+            <!-- Clasa 'starter-template' poate fi utilizată pentru stilizarea specifică a acestei secțiuni prin CSS -->
+            <h1 th:text="#{about.title}"></h1>
+            <!-- Afișează titlul paginii "Despre", cu textul dintr-un fișier de proprietăți pentru internaționalizare -->
+            <h4 th:text="#{about.text}"></h4>
+            <!-- Afișează textul principal al paginii "Despre", adus de asemenea dintr-un fișier de proprietăți pentru internaționalizare -->
+        </div>
+    </div>
+
+    <!-- <div th:replace="fragments/footer :: footer"></div> -->
+    <!-- Include fragmentul de subsol al site-ului utilizând Thymeleaf, oferind informații constante sau linkuri de navigare în partea de jos a paginii -->
+</body>
+
+</html>
+<!--  -->

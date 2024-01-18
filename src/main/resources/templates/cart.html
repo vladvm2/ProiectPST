@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/header :: header-css">
+    <!-- Include un fragment de antet cu CSS folosind sintaxa Thymeleaf pentru includerea fragmentelor -->
+</head>
+
+<body>
+
+<div th:replace="fragments/header :: header"></div>
+    <!-- Include un fragment de antet folosind sintaxa Thymeleaf pentru includerea fragmentelor -->
+
+<div class="container">
+    <div th:if="${!products.isEmpty()}" class="col-3">
+        <!-- Verifică dacă lista de produse nu este goală -->
+        <h2 th:text="#{cart.title}"></h2>
+        <!-- Afișează titlul coșului de cumpărături din proprietățile mesajului -->
+        <div class="card" th:each="product : ${products.entrySet()}">
+            <!-- Parcurge fiecare produs din mapa de produse -->
+            <h3 th:text="${product.getKey().getName()}"></h3>
+            <!-- Afișează numele produsului -->
+            <h4 th:text="${product.getValue()}"></h4>
+            <!-- Afișează cantitatea produsului -->
+            <h4 th:text="${product.getKey().getPrice()}"></h4>
+            <!-- Afișează prețul produsului -->
+            <a th:href="@{'/cart/remove/{id}'(id=${product.getKey().getId()})}" class="col-md-1">
+                <!-- Creează un link pentru a elimina produsul din coș, cu un parametru de id -->
+                <button type="button" class="btn btn-primary" th:text="#{cart.remove}"></button>
+                <!-- Afișează un buton pentru eliminarea produsului, cu textul din proprietățile mesajului -->
+            </a>
+            <br>
+        </div>
+    </div>
+
+    <div th:if="${products.isEmpty()}" class="col-3">
+        <!-- Verifică dacă lista de produse este goală -->
+        <h2 th:text="#{cart.empty}"></h2>
+        <!-- Afișează un mesaj dacă coșul de cumpărături este gol -->
+    </div>
+
+    <br>
+    <a th:href="@{'/cart/clear/'}" class="col-md-1">
+        <!-- Creează un link pentru a goli coșul de cumpărături -->
+        <button type="button" class="btn btn-info" th:text="#{cart.clear}"></button>
+        <!-- Afișează un buton pentru golirea coșului de cumpărături, cu textul din proprietățile mesajului -->
+    </a>
+
+    <br>
+    <div class="row">
+        <h3 th:text="#{cart.total} + ' ' + ${totalPrice}"></h3>
+        <!-- Afișează totalul coșului de cumpărături și prețul total -->
+        <a th:href="@{'/cart/checkout'}" class="col-md-1">
+            <!-- Creează un link pentru pagina de finalizare a cumpărăturilor -->
+            <button type="button" class="btn btn-success" th:text="#{cart.checkout}"></button>
+            <!-- Afișează un buton pentru finalizarea cumpărăturilor, cu textul din proprietățile mesajului -->
+        </a>
+    </div>
+</div>
+
+
+
+</body>
+
+</html>

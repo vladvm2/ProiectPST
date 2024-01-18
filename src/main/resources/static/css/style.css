@@ -1,0 +1,93 @@
+html {
+    height: 100%;
+}
+/* Setează înălțimea elementului html la 100% din înălțimea vizibilă a paginii. */
+
+body {
+    background: rgb(209, 209, 216);
+    position: relative;
+    margin: 0;
+    padding-bottom: 6rem;
+    min-height: 100%;
+}
+/* Stilizează corpul paginii:
+   - Fundal de culoare gri deschis.
+   - Poziție relativă pentru a permite poziționarea absolută a elementelor în interiorul său.
+   - Fără margini exterioare.
+   - Padding în partea de jos de 6 rem.
+   - Înălțimea minimă este setată la 100% pentru a asigura că întreaga pagină acoperă viewport-ul. */
+
+span {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+/* Adaugă padding pe partea stângă și dreaptă a elementelor span pentru spațiu în jurul textului. */
+
+footer {
+    position: absolute;
+    bottom: 0;
+    line-height: 50px;
+}
+/* Stilizează footer-ul:
+   - Poziționare absolută la baza paginii.
+   - Înălțimea liniei de 50px pentru a asigura spațiu adecvat în interiorul footer-ului. */
+
+.container {
+    padding-top: 15px;
+    padding-bottom: 8px;
+}
+/* Adaugă padding în partea superioară și inferioară a containerelor pentru spațiu suplimentar în jurul conținutului acestora. */
+
+.btn {
+    padding-left: 10px;
+}
+/* Adaugă padding pe partea stângă a butoanelor pentru spațiu în jurul textului din interior. */
+
+.alert {
+    padding-top: 5px;
+}
+/* Adaugă padding în partea superioară a elementelor cu clasă 'alert' pentru spațiu suplimentar în jurul textului de alertă. */
+
+#header-username {
+    color: ghostwhite;
+}
+/* Stilizează elementul cu ID-ul 'header-username':
+   - Culoarea textului setată la ghostwhite (un alb deschis). */
+
+nav {
+    height: 60px;
+}
+/* Setează înălțimea barei de navigație la 60px. */
+
+.navbar-brand {
+    font-size: 30px;
+    padding-left: 10px;
+    padding-right: 15px;
+    transition: all 300ms;
+}
+/* Stilizează brand-ul navbar-ului:
+   - Mărimea fontului de 30px.
+   - Padding pe partea stângă și dreaptă.
+   - Tranzitie suavă pentru toate proprietățile modificate, în 300 milisecunde. */
+
+.navbar-brand:hover, .info-slide:active {
+    transform: scale(1.5);
+}
+/* Efect de transformare pentru mărirea brand-ului navbar-ului și a elementului 'info-slide' când sunt hover sau active. */
+
+.card-deck {
+    padding-left: 20px;
+}
+/* Adaugă padding pe partea stângă a 'card-deck'-ului pentru a crea spațiu suplimentar. */
+
+.card {
+    max-width: 17rem;
+}
+/* Setează lățimea maximă a cardurilor la 17 rem. */
+
+#cart {
+    width: 44px;
+    height: 44px;
+}
+/* Stilizează elementul cu ID-ul 'cart':
+   - Lățimea și înălțimea stabilite la 44px. */
