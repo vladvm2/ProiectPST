@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <!-- Declară tipul de document ca HTML și definește spațiile de nume pentru XHTML și Thymeleaf -->
+
+<head th:replace="fragments/header :: header-css">
+    <!-- Include fragmentul de antet și CSS folosind Thymeleaf. Aceasta ar putea include stiluri CSS comune și alte elemente de antet necesare. -->
+</head>
+
+<body>
+
+    <div th:replace="fragments/header :: header"></div>
+    <!-- Include fragmentul de antet al site-ului utilizând Thymeleaf. Aceasta poate include elemente precum bara de navigație sau logo-ul site-ului. -->
+
+    <div class="container">
+        <!-- Container Bootstrap pentru conținutul principal al paginii -->
+        <div class="starter-template">
+            <!-- Clasa 'starter-template' poate fi utilizată pentru stilizarea specifică a acestei secțiuni prin CSS -->
+            <h1 th:text="#{error.title} + ' 500'"></h1>
+            <!-- Afișează un titlu pentru pagina de eroare, combinând un mesaj internaționalizat (tradus) din 'error.title' cu textul '500', indicând o eroare internă a serverului -->
+            <h3 th:text="#{error.internal}"></h3>
+            <!-- Afișează un mesaj de eroare suplimentar, explicând că s-a întâmplat o eroare internă a serverului. Textul este adus dintr-un fișier de proprietăți pentru internaționalizare -->
+            <a href="/home" th:text="#{home.back}"></a>
+            <!-- Oferă un link pentru a reveni la pagina principală, cu textul linkului tradus din 'home.back' -->
+        </div>
+    </div>
+
+    <div th:replace="fragments/footer :: footer"></div>
+    <!-- Include fragmentul de subsol al site-ului utilizând Thymeleaf. Acesta poate include informații cum ar fi drepturile de autor, linkuri de navigare etc. -->
+</body>
+
+</html>

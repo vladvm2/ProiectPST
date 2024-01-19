@@ -1,0 +1,48 @@
+<!doctype HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <!-- Specifică tipul documentului ca HTML și definește spațiile de nume pentru XHTML și Thymeleaf -->
+
+<head>
+    <!-- Secțiunea head, momentan fără conținut specific -->
+</head>
+
+<body>
+    <div th:fragment="footer">
+        <!-- Definește un fragment Thymeleaf numit 'footer' care poate fi inclus în alte pagini HTML ale aplicației -->
+
+        <div class="container">
+            <!-- Container Bootstrap pentru conținutul footer-ului -->
+            <footer>
+                <!-- Elementul HTML 'footer' pentru conținutul subsolului -->
+                <span th:text="#{footer.copyright}"></span>
+                <!-- Afișează textul drepturilor de autor, adus dintr-un fișier de proprietăți pentru internaționalizare -->
+
+                <span>
+                    <a th:href="@{/about}" th:text="#{about.name}"></a>
+                    <!-- Oferă un link către pagina 'Despre', cu textul linkului tradus din 'about.name' -->
+                </span>
+
+                <label>
+                    <select class="custom-select" id="select-lang">
+                        <!-- Selector pentru schimbarea limbii, cu clase Bootstrap pentru stilizare -->
+                        <option value="eng" th:selected="${#locale.getLanguage().toString() == 'en'}" th:text="#{footer.language.en}"></option>
+                        <!-- Opțiune pentru limba engleză, selectată dacă limba curentă este engleză -->
+                        <option value="pl" th:selected="${#locale.getLanguage().toString() == 'pl'}" th:text="#{footer.language.pl}"></option>
+                        <!-- Opțiune pentru limba poloneză, selectată dacă limba curentă este poloneză -->
+                        <option disabled value="den" th:selected="${#locale.getLanguage().toString() == 'den'}" th:text="#{footer.language.den}"></option>
+                        <!-- Opțiune pentru limba daneză, dezactivată și selectată condiționat -->
+                    </select>
+                </label>
+            </footer>
+        </div>
+
+        <script type="text/javascript" th:src="@{webjars/jquery/3.3.1-1/jquery.min.js}"></script>
+        <!-- Include jQuery din WebJars -->
+        <script type="text/javascript" th:src="@{webjars/bootstrap/4.1.0/js/bootstrap.min.js}"></script>
+        <!-- Include JavaScript-ul pentru Bootstrap din WebJars -->
+        <script type="text/javascript" th:src="@{/js/lang.js}"></script>
+        <!-- Include un script JavaScript personalizat pentru funcționalități legate de limbă -->
+    </div>
+</body>
+
+</html>

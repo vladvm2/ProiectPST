@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+>
+    <head th:replace="fragments/header :: header-css">
+        <!-- Include fragmentul de antet și CSS folosind Thymeleaf -->
+    </head>
+    <body>
+        <div th:replace="fragments/header :: header"></div>
+        <!-- Include fragmentul de antet folosind Thymeleaf -->
+
+        <div class="container">
+            <div class="row">
+                <nav class="side-menu">
+                    <h3>Category</h3>
+                    <!-- Titlul secțiunii de categorii -->
+                    <ul>
+                        <li th:each="cat: ${categories}">
+                            <!-- Parcurge lista de categorii -->
+                            <a
+                                th:href="@{/searchByCategory(categoryId=${cat.id})}"
+                                th:text="${cat.categoryName}"
+                            ></a>
+                            <!-- Creează un link pentru fiecare categorie -->
+                        </li>
+                    </ul>
+                </nav>
+
+                <div class="col-12">
+                    <div class="row mt-3">
+                        <button
+                            sec:authorize="hasRole('ROLE_ADMIN')"
+                            class="btn mb-3"
+                        >
+                            <!-- Buton vizibil doar pentru utilizatorii cu rolul de admin -->
+                            <a th:href="@{product/new}"
+                                ><i class="fas fa-plus fa-2x"></i
+                            ></a>
+                            <!-- Link pentru adăugarea unui nou produs -->
+                        </button>
+                    </div>
+
+                    <div class="row" th:if="${!products.isEmpty()}">
+                        <!-- Verifică dacă lista de produse nu este goală -->
+                        <div
+                            class="col-md-3 mb-4"
+                            th:each="product : ${products}"
+                        >
+                            <!-- Parcurge fiecare produs din lista de produse -->
+                            <div class="card h-100">
+                                <div
+                                    sec:authorize="hasRole('ROLE_ADMIN')"
+                                    class="admin"
+                                >
+                                    <!-- Secțiune vizibilă doar pentru admini -->
+                                    <form
+                                        th:action="@{'/product/delete/' + ${product.id}}"
+                                        method="post"
+                                    >
+                                        <button
+                                            type="submit"
+                                            class="btn btn-danger"
+                                        >
+                                            <i class="fas fa-trash-alt"></i>
+                                            Delete
+                                        </button>
+                                    </form>
+                                    <!-- Link pentru ștergerea unui produs -->
+                                    <button class="btn">
+                                        <a
+                                            th:href="@{'product/edit/' + ${product.getId()}}"
+                                            ><i class="fas fa-wrench"></i
+                                        ></a>
+                                    </button>
+                                    <!-- Link pentru editarea unui produs -->
+                                </div>
+                                <img
+                                    class="card-img-top"
+                                    th:if="${!product.imageUrl.empty}"
+                                    th:src="${product.imageUrl}"
+                                    alt="Card image cap"
+                                />
+                                <!-- Afișează imaginea produsului dacă există -->
+                                <div class="card-body">
+                                    <h4
+                                        class="card-title"
+                                        th:text="${product.getName()}"
+                                    ></h4>
+                                    <!-- Afișează numele produsului -->
+                                    <p
+                                        class="card-text"
+                                        th:text="${product.getDescription()}"
+                                    ></p>
+                                    <!-- Afișează descrierea produsului -->
+                                </div>
+                                <div class="card-footer">
+                                    <p th:text="${product.getPrice()}"></p>
+                                    <!-- Afișează prețul produsului -->
+                                    <a
+                                        th:href="${'/cart/add/' + product.getId()}"
+                                        class="btn btn-lg btn-outline-info btn-block"
+                                        th:text="#{product.add}"
+                                    ></a>
+                                    <!-- Link pentru adăugarea produsului în coșul de cumpărături -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <span
+                            th:text="#{product.count} + ' ' + ${productsCount}"
+                        ></span>
+                        <!-- Afișează numărul total de produse -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div th:replace="fragments/footer :: footer"></div>
+        <!-- Include fragmentul de subsol folosind Thymeleaf -->
+    </body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <!-- Declară tipul documentului HTML și definește spațiile de nume pentru XHTML și Thymeleaf -->
+
+<head th:replace="fragments/header :: header-css">
+    <!-- Include fragmentul de antet și CSS utilizând Thymeleaf -->
+</head>
+
+<body>
+    <div th:replace="fragments/header :: header"></div>
+    <!-- Include fragmentul de antet utilizând Thymeleaf -->
+
+    <div class="container">
+        <!-- Containar principal pentru conținutul paginii -->
+        <div class="row">
+            <!-- Structură de rând Bootstrap pentru alinierea conținutului -->
+            <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+                <!-- Coloaane Bootstrap pentru responsivitate -->
+                <form autocomplete="off" th:action="@{/login}" class="form-signin" method="POST">
+                    <!-- Formularul de autentificare, cu dezactivarea autocompletării și specificarea acțiunii spre '/login' -->
+                    <div th:if="${param.logout}">
+                        <!-- Bloc condiționat care apare dacă există parametrul 'logout' -->
+                        <div class="alert alert-info" th:text="#{login.alert.logged_out}"></div>
+                        <!-- Afișează un mesaj de informare la deconectare -->
+                    </div>
+                    <fieldset>
+                        <!-- Gruparea elementelor formularului -->
+                        <h1 th:text="#{login.sign_in}"></h1>
+                        <!-- Titlul formularului de autentificare -->
+                        <label th:text="#{user.username}"></label>
+                        <!-- Eticheta pentru câmpul de utilizator -->
+                        <div class="form-group">
+                            <!-- Gruparea elementelor de formular pentru design și stil -->
+                            <input type="text" name="username" class="form-control input-lg" placeholder="" required="true" autofocus="true"/>
+                            <!-- Câmpul pentru numele de utilizator -->
+                        </div>
+                        <label th:text="#{user.password}"></label>
+                        <!-- Eticheta pentru câmpul de parolă -->
+                        <div class="form-group">
+                            <input type="password" name="password" class="form-control input-lg" placeholder="" required="true" />
+                            <!-- Câmpul pentru parolă -->
+                        </div>
+                        <div th:if="${param.error}">
+                            <!-- Bloc condiționat care apare dacă există parametrul 'error' -->
+                            <div class="alert alert-danger" th:text="*{error}"></div>
+                            <!-- Afișează un mesaj de eroare -->
+                        </div>
+                        <span th:text="#{login.no_account}"></span>
+                        <!-- Textul care indică absența unui cont -->
+                        <span>
+                            <a th:href="@{/register}" th:text="#{register.button}"></a>
+                            <!-- Link pentru înregistrare -->
+                        </span>
+                        <div class="row">
+                            <!-- Structură de rând Bootstrap -->
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <!-- Coloaane Bootstrap pentru buton -->
+                                <input type="submit" name="login-sumbit" id="login-sumbit" class="btn btn-lg btn-primary btn-block" th:value="#{user.log_in}" />
+                                <!-- Butonul de trimitere a formularului -->
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div th:replace="fragments/footer :: footer"></div>
+    <!-- Include fragmentul de subsol utilizând Thymeleaf -->
+</body>
+
+</html>

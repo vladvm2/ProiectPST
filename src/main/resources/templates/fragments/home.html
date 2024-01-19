@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+    <!-- Declară tipul de document ca HTML și include spațiile de nume pentru XHTML, Thymeleaf și extensia Spring Security pentru Thymeleaf -->
+
+<head th:replace="fragments/header :: header-css">
+    <!-- Include un fragment de antet pentru stiluri CSS definit în altă parte folosind Thymeleaf -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/your-stylesheet.css}" />
+    <!-- Includerea unui fișier CSS personalizat -->
+</head>
+
+<body>
+    <!-- Antetul paginii cu bara de navigație -->
+    <header th:replace="fragments/header :: header">
+        <!-- Include fragmentul de antet al site-ului folosind Thymeleaf, ce poate conține logo și navigație -->
+    </header>
+
+    <!-- Bara de navigare pentru categorii -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <!-- Utilizează Bootstrap pentru a crea o bară de navigare responsivă -->
+        <div class="container">
+            <!-- Container Bootstrap pentru alinierea conținutului -->
+            <a class="navbar-brand" href="#" th:href="@{/}">N3XT</a>
+            <!-- Numele brandului cu link către pagina principală -->
+            <!-- Restul codului pentru bara de navigație colapsabilă și lista de categorii -->
+        </div>
+    </nav>
+
+    <!-- Container principal -->
+    <div class="container">
+        <!-- Container Bootstrap pentru alinierea conținutului -->
+        <div class="row">
+            <!-- Grid Bootstrap pentru aranjarea conținutului -->
+            <!-- Verifică dacă utilizatorul este administrator pentru a afișa butonul de adăugare a unui produs nou -->
+            <!-- Afișarea produselor cu buclă Thymeleaf peste colecția de produse -->
+            <!-- Fiecare produs are controale de administrare, imagine, detalii și buton de adăugare în coș -->
+        </div>
+    </div>
+
+    <!-- Subsolul paginii înlocuit prin fragment Thymeleaf -->
+    <div th:replace="fragments/footer :: footer"></div>
+
+    <!-- JavaScript opțional -->
+    <!-- jQuery, Popper.js și Bootstrap JS incluse pentru funcționalități interactive -->
+</body>
+</html>
